@@ -1,23 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import ToggleView from './component/ToggleView';
+import DateDropdown from './component/DateDropdown';
+import StrategyList from './component/StrategyList';
+import { dateArray } from './data/data';
 
 function App() {
+ const [view, setView] = useState("Bullish");
+  const [date, setDate] = useState(dateArray[0]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <ToggleView view={view} setView={setView} />
+
+      <DateDropdown date={date} setDate={setDate} />
+
+      <StrategyList view={view} date={date} />
     </div>
   );
 }
